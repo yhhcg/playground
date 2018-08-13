@@ -2,9 +2,7 @@ import React, {Fragment} from 'react';
 import {
   array,
   func,
-  object,
 } from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
 import {
   Card,
   Chip,
@@ -16,31 +14,15 @@ import {
 } from '@material-ui/core';
 import {hot} from 'react-hot-loader';
 
-const styles = (theme) => ({
-  root: {
-    width: '100%',
-  },
-});
-
 /**
  * List
  */
 @hot(module)
-@withStyles(styles)
 class List extends React.Component {
   static propTypes = {
-    classes: object.isRequired,
     list: array.isRequired,
     onChange: func.isRequired,
   };
-
-  /**
-   * @param {Object} props
-   */
-  constructor(props) {
-    super(props);
-    this.props = props;
-  }
 
   /**
    * ShouldComponentUpdate
@@ -74,10 +56,7 @@ class List extends React.Component {
    * @return {Element}
    */
   render() {
-    const {
-      classes,
-      list,
-    } = this.props;
+    const {list} = this.props;
 
     return (
       <Card>
