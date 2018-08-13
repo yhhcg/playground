@@ -12,20 +12,27 @@ const {
 
 const initialState = {
   list: [{
+    id: '0',
     text: 'Buy groceries',
     tags: [{
+      id: '0',
       name: 'personal',
     }],
   }, {
+    id: '1',
     text: 'Attend meeting',
     tags: [{
+      id: '1',
       name: 'work',
     }],
   }, {
+    id: '2',
     text: 'Pay bills',
     tags: [{
+      id: '2',
       name: 'personal',
     }, {
+      id: '3',
       name: 'urgent',
     }],
   }],
