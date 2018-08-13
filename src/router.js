@@ -35,12 +35,28 @@ class Router extends React.Component {
         return <div>Loading...</div>;
       },
     });
+
+    this.NormalizedDataPage = lodable({
+      loader: () => {
+        injectAsyncReducer( // Aynchronously load reducer
+          context.store,
+          'normalizedData', // Reducer name
+          require('./NormalizedData/reducer').default // Reducer function
+        );
+
+        return import('./NormalizedData/container');
+      },
+      loading: () => {
+        return <div>Loading...</div>;
+      },
+    });
   }
 
   render() {
     return (
       <Switch>
         <Route exact path="/" component={this.StateShapePage} />
+        <Route exact path="/normalizedData" component={this.NormalizedDataPage}/>
       </Switch>
     );
   }
