@@ -5,6 +5,7 @@ import Component from './component';
 import {
   sync,
 } from '../../actions';
+import {todoListSelector} from './selectors';
 
 const {
   changeTodoName,
@@ -12,7 +13,7 @@ const {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    list: state.normalizedData.list,
+    list: todoListSelector(state),
   };
 };
 
