@@ -20,11 +20,27 @@ class Router extends React.Component {
 
   constructor(props, context) {
     super(props);
+
+    this.StateShapePage = lodable({
+      loader: () => {
+        injectAsyncReducer( // Aynchronously load reducer
+          context.store,
+          'stateShape', // Reducer name
+          require('./StateShape/reducer').default // Reducer function
+        );
+
+        return import('./StateShape/container');
+      },
+      loading: () => {
+        return <div>Loading...</div>;
+      },
+    });
   }
 
   render() {
     return (
       <Switch>
+        <Route exact path="/" component={this.StateShapePage} />
       </Switch>
     );
   }
