@@ -6,6 +6,7 @@ import {withStyles} from '@material-ui/core/styles';
 import {hot} from 'react-hot-loader';
 import {
   Grid,
+  Typography,
 } from '@material-ui/core';
 
 import List from './components/List/container';
@@ -15,7 +16,6 @@ const styles = (theme) => ({
   root: {
     width: '100%',
     padding: '32px',
-    display: 'flex',
   },
 });
 
@@ -40,6 +40,7 @@ class StateShape extends React.Component {
 
     return (
       <div className={classes.root}>
+        <Typography paragraph={true} variant='title'>Todos</Typography>
         <Grid container={true} spacing={40}>
           <Grid item={true} xs={9}>
             <List />
