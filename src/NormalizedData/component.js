@@ -40,7 +40,7 @@ class NormalizedData extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Typography paragraph={true} variant='title'>Todos</Typography>
+        <Typography paragraph={true} variant='title'>Normalized Todos</Typography>
         <Grid container={true} spacing={40}>
           <Grid item={true} xs={9}>
             <List />
