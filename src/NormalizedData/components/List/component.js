@@ -56,16 +56,16 @@ class List extends React.Component {
 
   /**
    * HandleChange
-   * @param  {number} index
+   * @param  {string} todoId
    * @return {Function}
    */
-  handleChange = (index) => (event) => {
+  handleChange = (todoId) => (event) => {
     const {
       onChange,
     } = this.props;
 
     onChange({
-      index,
+      id: todoId,
       value: event.target.value,
     });
   }
@@ -88,7 +88,7 @@ class List extends React.Component {
                 <MuiList>
                   <ListSubheader>
                     <TextField
-                      onChange={this.handleChange(index)}
+                      onChange={this.handleChange(item.id)}
                       value={item.text}
                     />
                   </ListSubheader>

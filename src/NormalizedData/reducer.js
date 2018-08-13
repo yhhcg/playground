@@ -56,8 +56,22 @@ const initialState = {
 
 export default function Reducer(state=initialState, action) {
   switch (action.type) {
-    case CHANGE_TODO_NAME:
-      return state;
+    case CHANGE_TODO_NAME: {
+      const {id, value} = action.payload;
+      return {
+        ...state,
+        todos: {
+          ...state.todos,
+          byId: {
+            ...state.todos.byId,
+            [id]: {
+              ...state.todos.byId[id],
+              text: value,
+            },
+          },
+        },
+      };
+    }
     default:
       return state;
   }
