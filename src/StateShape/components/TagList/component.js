@@ -1,16 +1,19 @@
 import React from 'react';
-import {object} from 'prop-types';
+import {
+  array,
+  object,
+} from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
+import {
+  List,
+  ListItem,
+} from '@material-ui/core';
 import {hot} from 'react-hot-loader';
 import {
   Card,
 } from '@material-ui/core';
 
-const styles = (theme) => ({
-  root: {
-    width: '100%',
-  },
-});
+const styles = (theme) => ({});
 
 /**
  * TagList
@@ -20,6 +23,7 @@ const styles = (theme) => ({
 class TagList extends React.Component {
   static propTypes = {
     classes: object.isRequired,
+    list: array.isRequired,
   };
 
   /**
@@ -35,11 +39,21 @@ class TagList extends React.Component {
    */
   render() {
     const {
-      classes,
+      list,
     } = this.props;
 
     return (
-      <Card className={classes.root}>123</Card>
+      <Card>
+        {
+          list.map((tag) => {
+            return (
+              <List key={tag}>
+                <ListItem>{tag}</ListItem>
+              </List>
+            );
+          })
+        }
+      </Card>
     );
   }
 }

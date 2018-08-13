@@ -9,7 +9,21 @@ import {
 const {} = async;
 
 const mapStateToProps = (state, ownProps) => {
-  return {};
+  const list = state.stateShape.list
+    .map((item) => {
+      return item.tags;
+    })
+    .reduce((preResult, item) => {
+      return [
+        ...preResult,
+        ...item,
+      ];
+    }, [])
+    .map((item) => item.name);
+
+  return {
+    list: Array.from(new Set(list)),
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
