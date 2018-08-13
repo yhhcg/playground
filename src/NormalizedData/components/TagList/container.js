@@ -5,24 +5,13 @@ import Component from './component';
 import {
   async,
 } from '../../actions';
+import {tagListSelector} from './selectors';
 
 const {} = async;
 
 const mapStateToProps = (state, ownProps) => {
-  const list = state.normalizedData.list
-    .map((item) => {
-      return item.tags;
-    })
-    .reduce((preResult, item) => {
-      return [
-        ...preResult,
-        ...item,
-      ];
-    }, [])
-    .map((item) => item.name);
-
   return {
-    list: Array.from(new Set(list)),
+    list: tagListSelector(state),
   };
 };
 
