@@ -11,42 +11,53 @@ const {
 } = sync;
 
 const initialState = {
-  list: [{
-    text: 'Buy groceries',
-    tags: [{
-      name: 'personal',
-    }],
-  }, {
-    text: 'Attend meeting',
-    tags: [{
-      name: 'work',
-    }],
-  }, {
-    text: 'Pay bills',
-    tags: [{
-      name: 'personal',
-    }, {
-      name: 'urgent',
-    }],
-  }],
+  todos: {
+    allIds: ['0', '1', '2'],
+    byId: {
+      '0': {
+        id: '0',
+        text: 'Buy groceries',
+        tags: ['0'],
+      },
+      '1': {
+        id: '1',
+        text: 'Attend meeting',
+        tags: ['1'],
+      },
+      '2': {
+        id: '2',
+        text: 'Pay bills',
+        tags: ['2', '3'],
+      },
+    },
+  },
+  todoTags: {
+    allIds: ['0', '1', '2', '3'],
+    byId: {
+      '0': {
+        id: '0',
+        name: 'personal',
+      },
+      '1': {
+        id: '1',
+        name: 'work',
+      },
+      '2': {
+        id: '2',
+        name: 'personal',
+      },
+      '3': {
+        id: '3',
+        name: 'urgent',
+      },
+    },
+  },
 };
 
 export default function Reducer(state=initialState, action) {
   switch (action.type) {
-    case CHANGE_TODO_NAME: {
-      const {index, value} = action.payload;
-      return {
-        ...state,
-        list: [
-          ...state.list.slice(0, index),
-          {
-            ...state.list[index],
-            text: value,
-          },
-          ...state.list.slice(index + 1),
-        ],
-      };
-    }
+    case CHANGE_TODO_NAME:
+      return state;
     default:
       return state;
   }
