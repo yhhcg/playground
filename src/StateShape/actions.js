@@ -1,7 +1,14 @@
 /* eslint-disable require-jsdoc */
-import {Async} from 'redux-action-boilerplate';
+import {Async, Sync} from 'redux-action-boilerplate';
 
 export const async = new Async({
   prefix: 'list',
   actions: [],
+});
+
+export const sync = new Sync({
+  prefix: 'list',
+  actions: [
+    'changeTodoName',
+  ],
 });

@@ -35,6 +35,18 @@ class TagList extends React.Component {
   }
 
   /**
+   * ShouldComponentUpdate
+   * @param  {Object} nextProps
+   * @param  {Object} nextState
+   * @return {Boolean}
+   */
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('TagList');
+    console.log(this.props.list === nextProps.list);
+    return true;
+  }
+
+  /**
    * @return {Element}
    */
   render() {

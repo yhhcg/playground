@@ -1,16 +1,18 @@
 import React, {Fragment} from 'react';
 import {
   array,
+  func,
   object,
 } from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import {
   Card,
+  Chip,
   Divider,
   List as MuiList,
   ListItem,
-  ListItemText,
   ListSubheader,
+  TextField,
 } from '@material-ui/core';
 import {hot} from 'react-hot-loader';
 
@@ -29,6 +31,7 @@ class List extends React.Component {
   static propTypes = {
     classes: object.isRequired,
     list: array.isRequired,
+    onChange: func.isRequired,
   };
 
   /**
@@ -37,6 +40,34 @@ class List extends React.Component {
   constructor(props) {
     super(props);
     this.props = props;
+  }
+
+  /**
+   * ShouldComponentUpdate
+   * @param  {Object} nextProps
+   * @param  {Object} nextState
+   * @return {Boolean}
+   */
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('List');
+    console.log(this.props.list === nextProps.list);
+    return true;
+  }
+
+  /**
+   * HandleChange
+   * @param  {number} index
+   * @return {Function}
+   */
+  handleChange = (index) => (event) => {
+    const {
+      onChange,
+    } = this.props;
+
+    onChange({
+      index,
+      value: event.target.value,
+    });
   }
 
   /**
@@ -55,12 +86,19 @@ class List extends React.Component {
             return (
               <Fragment key={index}>
                 <MuiList>
-                  <ListSubheader>{item.text}</ListSubheader>
+                  <ListSubheader>
+                    <TextField
+                      onChange={this.handleChange(index)}
+                      value={item.text}
+                    />
+                  </ListSubheader>
                   {
                     item.tags.map((tag, tagIndex) => {
                       return (
                         <ListItem key={`${index}-${tagIndex}`}>
-                          <ListItemText>{tag.name}</ListItemText>
+                          <Chip
+                            label={tag.name}
+                          />
                         </ListItem>
                       );
                     })

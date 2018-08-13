@@ -3,10 +3,12 @@ import {connect} from 'react-redux';
 
 import Component from './component';
 import {
-  async,
+  sync,
 } from '../../actions';
 
-const {} = async;
+const {
+  changeTodoName,
+} = sync;
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -15,7 +17,11 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {};
+  return {
+    onChange: (payload) => {
+      dispatch(changeTodoName(payload));
+    },
+  };
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
