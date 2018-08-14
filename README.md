@@ -1,18 +1,12 @@
-# react-seed-upgraded
+# react-playground
 
-Import redux base on [react-seed-simplify](https://github.com/yhhcg/react-seed-simplify)
+### Normalized data
 
-## Developing
-
-``` bash
-$ yarn
-$ yarn start
-```
-
-## Features:
-
-- Lazy Loading
-- HMR
-- Tree Shaking
-- Code Inspection
-- Code Splitting
+####Demo
+  - [StateShape](https://github.com/yhhcg/react-playground/tree/master/src/StateShape "StateShape")
+  - [NormalizedData](https://github.com/yhhcg/react-playground/tree/master/src/NormalizedData "NormalizedData")
+ 
+####Links
+  - [Normalizing State Shape](https://redux.js.org/recipes/structuringreducers/normalizingstateshape "Normalizing State Shape")
+  - [Updating Normalized Data](https://redux.js.org/recipes/structuringreducers/updatingnormalizeddata "Updating Normalized Data")
+  - [Computing Derived Data](https://redux.js.org/recipes/computingderiveddata "Computing Derived Data")
