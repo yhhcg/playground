@@ -27,12 +27,12 @@ const initialState = {
       '2': {
         id: '2',
         text: 'Pay bills',
-        tags: ['2', '3'],
+        tags: ['0', '2'],
       },
     },
   },
   todoTags: {
-    allIds: ['0', '1', '2', '3'],
+    allIds: ['0', '1', '2'],
     byId: {
       '0': {
         id: '0',
@@ -44,10 +44,6 @@ const initialState = {
       },
       '2': {
         id: '2',
-        name: 'personal',
-      },
-      '3': {
-        id: '3',
         name: 'urgent',
       },
     },

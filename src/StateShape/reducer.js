@@ -29,10 +29,10 @@ const initialState = {
     id: '2',
     text: 'Pay bills',
     tags: [{
-      id: '2',
+      id: '0',
       name: 'personal',
     }, {
-      id: '3',
+      id: '2',
       name: 'urgent',
     }],
   }],
