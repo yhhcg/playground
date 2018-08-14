@@ -1,9 +1,7 @@
 import React from 'react';
 import {
   array,
-  object,
 } from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
 import {
   List,
   ListItem,
@@ -13,26 +11,14 @@ import {
   Card,
 } from '@material-ui/core';
 
-const styles = (theme) => ({});
-
 /**
  * TagList
  */
 @hot(module)
-@withStyles(styles)
 class TagList extends React.Component {
   static propTypes = {
-    classes: object.isRequired,
     list: array.isRequired,
   };
-
-  /**
-   * @param {Object} props
-   */
-  constructor(props) {
-    super(props);
-    this.props = props;
-  }
 
   /**
    * ShouldComponentUpdate
