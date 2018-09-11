@@ -1,27 +1,68 @@
 import React from 'react';
+import {
+  object,
+} from 'prop-types';
 import {hot} from 'react-hot-loader';
+import {withStyles} from '@material-ui/core/styles';
 import cloneDeep from 'lodash/cloneDeep';
 
 import path from './mockData';
+
+const styles = (theme) => ({
+  root: {
+    width: '100%',
+    padding: '32px',
+  },
+});
 
 /**
  * DeepCoping Page
  */
 @hot(module)
+@withStyles(styles)
 class DeepCoping extends React.Component {
+  static propTypes = {
+    classes: object,
+  };
+
   /**
    * @param  {Object} props
    */
   constructor(props) {
     super(props);
 
-    this.start = new Date().getTime();
+    // JSON
+    this.jsonStartTime = new Date().getTime();
     console.log(JSON.parse(JSON.stringify(path)));
-    this.executionTimeOfJson = new Date().getTime() - this.start;
+    this.executionTimeOfJson = new Date().getTime() - this.jsonStartTime;
 
-    this.startOfLodash = new Date().getTime();
+    // DeepCopy function
+    this.copyFuncStartTime = new Date().getTime();
+    console.log(this.deepCopy(path));
+    this.executionTimeOfCopyFunc = new Date().getTime() - this.copyFuncStartTime;
+
+    // Lodash cloneDeep
+    this.lodashStartTime = new Date().getTime();
     console.log(cloneDeep(path));
-    this.executionTimeOfLodash = new Date().getTime() - this.startOfLodash;
+    this.executionTimeOfLodash = new Date().getTime() - this.lodashStartTime;
+  }
+
+  /**
+   * Copy data
+   * @param  {Array|Object} data
+   * @return {Array|Object}
+   */
+  deepCopy(data) {
+    let output = data instanceof Array ? [] : {};
+    for (let key in data) {
+      if (data.hasOwnProperty(key)) {
+        const value = data[key];
+        output[key] = typeof value === 'object' && value !== null
+          ? this.deepCopy(value)
+          : value;
+      }
+    }
+    return output;
   }
 
   /**
@@ -29,11 +70,20 @@ class DeepCoping extends React.Component {
    * @return {Node}
    */
   render() {
+    const {
+      classes,
+    } = this.props;
+
     return (
-      <div>
+      <div className={classes.root}>
         <h1>Deep Copying in JS</h1>
+
         <div>JSON.parse and JSON.stringify</div>
         <div>{this.executionTimeOfJson}ms</div>
+
+        <div>Copy function</div>
+        <div>{this.executionTimeOfCopyFunc}ms</div>
+
         <div>lodash</div>
         <div>{this.executionTimeOfLodash}ms</div>
       </div>
