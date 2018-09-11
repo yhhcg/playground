@@ -21,15 +21,9 @@ class Router extends React.Component {
   constructor(props, context) {
     super(props);
 
-    this.StateShapePage = lodable({
+    this.DeepCopingPage = lodable({
       loader: () => {
-        injectAsyncReducer( // Aynchronously load reducer
-          context.store,
-          'stateShape', // Reducer name
-          require('./StateShape/reducer').default // Reducer function
-        );
-
-        return import('./StateShape/container');
+        return import('./DeepCoping');
       },
       loading: () => {
         return <div>Loading...</div>;
@@ -50,6 +44,21 @@ class Router extends React.Component {
         return <div>Loading...</div>;
       },
     });
+
+    this.StateShapePage = lodable({
+      loader: () => {
+        injectAsyncReducer( // Aynchronously load reducer
+          context.store,
+          'stateShape', // Reducer name
+          require('./StateShape/reducer').default // Reducer function
+        );
+
+        return import('./StateShape/container');
+      },
+      loading: () => {
+        return <div>Loading...</div>;
+      },
+    });
   }
 
   render() {
@@ -57,6 +66,7 @@ class Router extends React.Component {
       <Switch>
         <Route exact path="/" component={this.StateShapePage} />
         <Route exact path="/normalizedData" component={this.NormalizedDataPage}/>
+        <Route exact path="/deepCoping" component={this.DeepCopingPage}/>
       </Switch>
     );
   }
